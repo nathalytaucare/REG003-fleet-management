@@ -1,0 +1,26 @@
+{
+  "name": "reg003-fleet-management",
+  "version": "1.0.0",
+  "description": "* [1. Preámbulo](#1-preámbulo)\r * [2. Resumen del proyecto](#2-resumen-del-proyecto)\r * [3. Objetivos de aprendizaje](#3-objetivos-de-aprendizaje)\r * [4. Criterios de aceptación mínimos del proyecto](#4-criterios-de-aceptación-mínimos-del-proyecto)\r * [5. Stack de tecnologías](#5-stack-de-tecnologías)\r * [6. Boilerplate](#6-Boilerplate)\r * [7. Pistas, tips y lecturas complementarias](#7-pistas-tips-y-lecturas-complementarias)\r * [8. Hacker edition](#8-hacker-edition)",
+  "main": "config.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start" : "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nathalytaucare/REG003-fleet-management.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nathalytaucare/REG003-fleet-management/issues"
+  },
+  "homepage": "https://github.com/nathalytaucare/REG003-fleet-management#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
