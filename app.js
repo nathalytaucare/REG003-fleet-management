@@ -54,6 +54,9 @@ const port = process.env.PORT || 8000;
   //     console.log('user disconnected');
   //   });
   // });
+  app.get( '/',( req , res)=>{ 
+    res.json({ mensaje : 'vivo'}); 
+  });
 
   app.listen(port, () => {
     console.log(`App listening at http://localhost:${port}`);

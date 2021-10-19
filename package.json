@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start" : "node app.js"
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
@@ -21,6 +21,10 @@
   },
   "homepage": "https://github.com/nathalytaucare/REG003-fleet-management#readme",
   "dependencies": {
+    "@prisma/client": "^3.3.0",
     "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "prisma": "^3.3.0"
   }
 }
