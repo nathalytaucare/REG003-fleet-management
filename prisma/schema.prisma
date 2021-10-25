@@ -13,11 +13,10 @@ datasource db {
 model User{
   id Int @id @default(autoincrement())
     createdAt DateTime @default(now())
-  name String @db.VarChar(255)
+  name String @db.VarChar(255)@unique
   email String @unique @db.VarChar(255)
   password String
-  role      Role     @default(USER)
-  locations  String  @db.VarChar(255)
+  role      Role     @default(TAXISTA)
 }
 model Taxi{
   id Int @id @default(autoincrement())
@@ -34,6 +33,6 @@ createdAt DateTime
 }
 
 enum Role {
-  USER
+  TAXISTA
   ADMIN
 }
