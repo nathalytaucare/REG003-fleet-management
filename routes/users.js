@@ -1,52 +1,57 @@
-// const router = require('express').Router();
-// const { PrismaClient } = require('@prisma/client');
-// // const { user } = new PrismaClient();
-// const prisma = new PrismaClient();
+const { PrismaClient } = require('@prisma/client');
+const prisma = new PrismaClient();
+const bcrypt = require('bcrypt');
 
-// router.get('/', async (req, res) => {
-//     let users = await prisma.user.findMany({
-//         select: {
-//             name: true,
-//             email: true,
+// const User = require('../model/user-model');
+// const {
+//   requireAuth,
+//   requireAdmin,
+// } = require('../middleware/auth');
 
-//         }
-//     })
+const {
+  getUsers, postUser, deleteUser,putUser} = require('../controllers/users');
 
-//     res.json(users)
-// })
+const initAdminUser = (app, next) => {
+  const { adminEmail, adminPassword } = app.get('config');
+  if (!adminEmail || !adminPassword) {
+    return next();
+  }
 
-// router.post('/', async (req, res) => {
-//     const { name,email, password } = req.body;
+  const adminUser = {
+    email: adminEmail,
+    password: bcrypt.hashSync(adminPassword, 10),
+    roles: { admin: true },
+  };
 
-//     const userExists = await prisma.user.findUnique({
-//         where: {
-//             name
-            
-//         },
-//         select: {
-//             name: true,
-//             email: true,
-//             password: true,
-          
-//         }
-//       })
+  // TODO: crear usuaria admin
+  const user = prisma.user.findUnique({
+    where:{email: adminEmail}  });
+  if (!user) {
+    // TODO: crear usuaria admin
+    const newAdminUser = new User(adminUser);
+    newAdminUser.save();
+  }
+  next();
+};
 
-//     if(userExists) {
-//         return res.status(400).json({
-//             msg: "user already exists"
-//         })
-//     }
 
-//     let newUser = await prisma.user.create({
-//         data: {
-//             name,
-//             email,
-//             password,           
-        
-//         }
-//     })
+module.exports = (app, next) => {
+  
+  app.get('/users', getUsers);
 
-//     res.json(newUser)
-// });
+  
+  // app.get('/users/:uid', requireAuth, (req, resp) => {
+  // });
 
-// module.exports = router
+  
+  app.post('/users',postUser );
+
+  
+  app.put('/users/:id', putUser) ;
+
+  
+  app.delete('/users/:id', deleteUser); 
+
+  initAdminUser(app, next);
+};
+
